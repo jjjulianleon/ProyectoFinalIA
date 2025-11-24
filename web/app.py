@@ -125,12 +125,12 @@ def create_feature_radar_chart(user_features):
     max_vals = {
         'Openness': 10, 'Conscientiousness': 10, 'Extraversion': 10,
         'Agreeableness': 10, 'Neuroticism': 10,
-        'Numerical_Aptitude': 100, 'Spatial_Aptitude': 100,
-        'Perceptual_Aptitude': 100, 'Abstract_Reasoning': 100,
-        'Verbal_Reasoning': 100
+        'Numerical_Aptitude': 10, 'Spatial_Aptitude': 10,
+        'Perceptual_Aptitude': 10, 'Abstract_Reasoning': 10,
+        'Verbal_Reasoning': 10
     }
 
-    normalized_values = [(values[i] / max_vals.get(features[i], 100)) * 100 for i in range(len(features))]
+    normalized_values = [(values[i] / max_vals.get(features[i], 10)) * 100 for i in range(len(features))]
 
     fig = go.Figure(data=go.Scatterpolar(
         r=normalized_values,
@@ -169,6 +169,9 @@ def main():
     st.sidebar.header("📝 Enter Your Profile")
     st.sidebar.markdown("Fill in your information below:")
 
+    # User Name
+    user_name = st.sidebar.text_input("Name (Optional)", placeholder="Your name here")
+
     # OCEAN Personality Traits
     st.sidebar.subheader("🧠 Personality Traits (1-10)")
     openness = st.sidebar.slider("Openness to Experience", 1.0, 10.0, 6.0, 0.1,
@@ -183,16 +186,16 @@ def main():
                                      help="Emotional sensitivity and tendency to worry")
 
     # Aptitude Scores
-    st.sidebar.subheader("📊 Aptitude Scores (0-100)")
-    numerical = st.sidebar.slider("Numerical Aptitude", 0.0, 100.0, 65.0, 1.0,
+    st.sidebar.subheader("📊 Aptitude Scores (0-10)")
+    numerical = st.sidebar.slider("Numerical Aptitude", 0.0, 10.0, 6.5, 0.1,
                                    help="Mathematical and quantitative reasoning")
-    spatial = st.sidebar.slider("Spatial Aptitude", 0.0, 100.0, 60.0, 1.0,
+    spatial = st.sidebar.slider("Spatial Aptitude", 0.0, 10.0, 6.0, 0.1,
                                  help="Visual-spatial reasoning and mental manipulation")
-    perceptual = st.sidebar.slider("Perceptual Aptitude", 0.0, 100.0, 65.0, 1.0,
+    perceptual = st.sidebar.slider("Perceptual Aptitude", 0.0, 10.0, 6.5, 0.1,
                                     help="Pattern recognition and attention to detail")
-    abstract = st.sidebar.slider("Abstract Reasoning", 0.0, 100.0, 63.0, 1.0,
+    abstract = st.sidebar.slider("Abstract Reasoning", 0.0, 10.0, 6.3, 0.1,
                                   help="Logical thinking and problem-solving")
-    verbal = st.sidebar.slider("Verbal Reasoning", 0.0, 100.0, 67.0, 1.0,
+    verbal = st.sidebar.slider("Verbal Reasoning", 0.0, 10.0, 6.7, 0.1,
                                 help="Language comprehension and communication")
 
     # Predict button
@@ -272,18 +275,18 @@ def main():
                 tab1, tab2, tab3 = st.tabs(["💬 Personalized Advice", "🎯 Top Career Details", "📖 Explanation"])
 
                 with tab1:
-                    advice = advisor.generate_career_advice(career_probs_sorted, user_data, top_n=3)
+                    advice = advisor.generate_career_advice(career_probs_sorted, user_data, top_n=3, user_name=user_name)
                     st.markdown(advice)
 
                 with tab2:
                     top_career = career_probs_sorted[0][0]
-                    description = advisor.generate_career_description(top_career, user_data)
+                    description = advisor.generate_career_description(top_career, user_data, user_name=user_name)
                     st.markdown(f"### {top_career}")
                     st.markdown(description)
 
                 with tab3:
                     top_career, top_prob = career_probs_sorted[0]
-                    explanation = advisor.explain_prediction(top_career, top_prob, user_data)
+                    explanation = advisor.explain_prediction(top_career, top_prob, user_data, user_name=user_name)
                     st.info(explanation)
 
         # Feature Importance

@@ -92,27 +92,27 @@ These are based on the OCEAN (Big Five) personality model:
    - High: Sensitive, aware of emotions
    - Low: Calm, emotionally stable
 
-#### 📊 Aptitude Scores (0-100 scale)
+#### 📊 Aptitude Scores (0-10 scale)
 
 These measure your specific abilities:
 
-1. **Numerical Aptitude (0-100)**
+1. **Numerical Aptitude (0-10)**
    - Mathematical and quantitative reasoning
    - Important for: Engineering, Data Science, Accounting
 
-2. **Spatial Aptitude (0-100)**
+2. **Spatial Aptitude (0-10)**
    - Visualizing and manipulating objects mentally
    - Important for: Design, Architecture, Engineering
 
-3. **Perceptual Aptitude (0-100)**
+3. **Perceptual Aptitude (0-10)**
    - Pattern recognition and attention to detail
    - Important for: Quality Control, Research, Design
 
-4. **Abstract Reasoning (0-100)**
+4. **Abstract Reasoning (0-10)**
    - Logical thinking and problem-solving
    - Important for: Programming, Research, Analysis
 
-5. **Verbal Reasoning (0-100)**
+5. **Verbal Reasoning (0-10)**
    - Language and communication skills
    - Important for: Teaching, Marketing, Management
 
