@@ -1,0 +1,32 @@
+# Core Data Science Libraries
+pandas==2.1.4
+numpy==1.26.2
+scikit-learn==1.3.2
+
+# Visualization
+matplotlib==3.8.2
+seaborn==0.13.0
+plotly==5.18.0
+
+# Web Framework
+streamlit==1.29.0
+
+# OpenAI Integration
+openai==1.6.1
+python-dotenv==1.0.0
+
+# MCP Development
+mcp==0.1.0
+httpx==0.25.2
+pydantic==2.5.3
+
+# Data Processing
+joblib==1.3.2
+
+# Jupyter for experimentation
+jupyter==1.0.0
+notebook==7.0.6
+
+# Code Quality
+black==23.12.1
+pylint==3.0.3
