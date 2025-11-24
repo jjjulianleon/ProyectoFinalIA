@@ -318,7 +318,7 @@ def main():
         col1, col2, col3 = st.columns(3)
 
         with col1:
-            st.metric("Career Categories", "10")
+            st.metric("Career Categories", "25")
         with col2:
             st.metric("ML Models", "2")
         with col3:
@@ -341,7 +341,7 @@ def main():
 
         ### 🤖 Technology Stack:
         - **ML Models:** Random Forest & Logistic Regression
-        - **AI Insights:** OpenAI GPT-3.5
+        - **AI Insights:** OpenAI GPT-5
         - **Web Framework:** Streamlit
         - **Data Science:** scikit-learn, pandas, numpy
 

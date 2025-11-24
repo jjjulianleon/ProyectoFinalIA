@@ -31,9 +31,13 @@ class CareerAdvisor:
         self.client = OpenAI(api_key=api_key)
         self.model = os.getenv('MODEL_NAME', 'gpt-3.5-turbo')
         self.temperature = float(os.getenv('TEMPERATURE', '0.7'))
-        self.max_tokens = int(os.getenv('MAX_TOKENS', '500'))
+        self.max_completion_tokens = int(os.getenv('MAX_TOKENS', '500'))
 
-    def generate_career_description(self, career_name, user_features=None):
+        # Enforce temperature=1 for gpt-5 and o1 models
+        if self.model in ['gpt-5', 'o1-preview', 'o1-mini']:
+            self.temperature = 1.0
+
+    def generate_career_description(self, career_name, user_features=None, user_name=None):
         """
         Generate a personalized career description
 
@@ -56,6 +60,9 @@ Include:
 Keep it informative but motivating for a student exploring career options.
 Limit response to 200 words."""
 
+        if user_name:
+            prompt = f"Address the student as {user_name}. " + prompt
+
         if user_features:
             prompt += f"\n\nNote: This recommendation is based on the student's profile showing strengths in areas like {', '.join(str(k) for k in list(user_features.keys())[:3])}."
 
@@ -67,7 +74,7 @@ Limit response to 200 words."""
                     {"role": "user", "content": prompt}
                 ],
                 temperature=self.temperature,
-                max_tokens=self.max_tokens
+                max_completion_tokens=self.max_completion_tokens
             )
 
             return response.choices[0].message.content.strip()
@@ -75,7 +82,7 @@ Limit response to 200 words."""
         except Exception as e:
             return f"[AI Description unavailable: {str(e)}] {career_name} is a rewarding career path with opportunities for growth and development."
 
-    def generate_career_advice(self, predicted_careers, user_features, top_n=3):
+    def generate_career_advice(self, predicted_careers, user_features, top_n=3, user_name=None):
         """
         Generate personalized advice based on top predicted careers
 
@@ -105,6 +112,9 @@ Provide:
 
 Keep it concise (250 words max) and actionable."""
 
+        if user_name:
+            prompt = f"Address the student as {user_name}. " + prompt
+
         try:
             response = self.client.chat.completions.create(
                 model=self.model,
@@ -113,7 +123,7 @@ Keep it concise (250 words max) and actionable."""
                     {"role": "user", "content": prompt}
                 ],
                 temperature=self.temperature,
-                max_tokens=600
+                max_completion_tokens=self.max_completion_tokens
             )
 
             return response.choices[0].message.content.strip()
@@ -121,7 +131,7 @@ Keep it concise (250 words max) and actionable."""
         except Exception as e:
             return f"Error generating advice: {str(e)}"
 
-    def explain_prediction(self, career_name, probability, top_features):
+    def explain_prediction(self, career_name, probability, top_features, user_name=None):
         """
         Explain why a specific career was predicted
 
@@ -141,6 +151,9 @@ Their profile shows: {features_str}
 
 Explain the connection between their strengths and this career in a way that's easy to understand and encouraging."""
 
+        if user_name:
+            prompt = f"Address the student as {user_name}. " + prompt
+
         try:
             response = self.client.chat.completions.create(
                 model=self.model,
@@ -149,7 +162,7 @@ Explain the connection between their strengths and this career in a way that's e
                     {"role": "user", "content": prompt}
                 ],
                 temperature=self.temperature,
-                max_tokens=150
+                max_completion_tokens=self.max_completion_tokens
             )
 
             return response.choices[0].message.content.strip()

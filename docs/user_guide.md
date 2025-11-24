@@ -353,7 +353,7 @@ Developed by Universidad & Virginia Tech students as part of a COIL (Collaborati
 **Technologies:**
 - Python, scikit-learn, pandas
 - Streamlit
-- OpenAI GPT-3.5
+- OpenAI GPT-5
 - Model Context Protocol (MCP)
 
 ---

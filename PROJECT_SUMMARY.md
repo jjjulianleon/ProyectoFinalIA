@@ -140,7 +140,7 @@ The app will open at `http://localhost:8501`
    - Hyperparameter understanding
 
 3. ✅ **API Integration**
-   - OpenAI GPT-3.5 API
+   - OpenAI GPT-5 API
    - Environment variable management
    - Error handling
 
@@ -187,7 +187,7 @@ When users get predictions, they receive:
 2. **Career Descriptions** - Detailed information about predicted careers
 3. **Explanations** - Why specific careers were predicted
 
-All powered by GPT-3.5-turbo with customized prompts.
+All powered by GPT-5-turbo with customized prompts.
 
 ---
 
@@ -281,7 +281,7 @@ Designed for:
 
 - **Real-world application** - Helps students make informed career decisions
 - **Multiple ML models** - Comparison and selection
-- **AI integration** - Modern approach with GPT-3.5
+- **AI integration** - Modern approach with GPT-5
 - **MCP pattern** - Demonstrates understanding of software architecture
 - **Full-stack** - Data science + web development
 
