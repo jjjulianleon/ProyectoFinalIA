@@ -4,16 +4,22 @@ Tests all components of CareerPath AI
 """
 
 import sys
+import os
 from pathlib import Path
 import pandas as pd
 import joblib
 
+# Change to script directory
+script_dir = Path(__file__).parent.absolute()
+os.chdir(script_dir)
+
 print("="*70)
 print(" "*20 + "CAREERPATH AI - PROJECT TEST")
 print("="*70)
+print(f"\nWorking directory: {os.getcwd()}\n")
 
 # Test 1: Check project structure
-print("\n[TEST 1] Checking project structure...")
+print("[TEST 1] Checking project structure...")
 required_paths = [
     'data/raw/career_data.csv',
     'models/best_model.joblib',
