@@ -1,0 +1,94 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{parskip}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+\title{\textbf{Ethical Considerations in AI-Driven Career Advising}}
+\author{Team Members: Julián León, ..., ....}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+The \textit{CareerPath AI} project aims to assist students in exploring potential career paths using Machine Learning (ML) and Generative AI. By analyzing personality traits and aptitude scores, the system predicts suitable career categories and provides personalized advice. While this technology offers significant benefits in terms of accessibility and personalized guidance, it also raises critical ethical questions regarding bias, accountability, and the correctness of its predictions. This report addresses these ethical considerations and demonstrates how easily such models can be manipulated.
+
+\section{Variables and Model Limitations}
+To understand the ethical landscape, it is essential to define the variables used and the model's limitations precisely.
+
+\subsection{Input Variables}
+The model relies on a specific set of psychometric inputs:
+\begin{itemize}
+    \item \textbf{Personality Traits (OCEAN Model)}: Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism. (Scale: 1-10)
+    \item \textbf{Aptitude Scores}: Numerical, Spatial, Perceptual, Abstract, and Verbal Reasoning. (Scale: 0-100)
+\end{itemize}
+
+\subsection{Limitations}
+The model's scope is inherently limited by what it \textit{excludes}. It does not account for:
+\begin{itemize}
+    \item \textbf{Socioeconomic Background}: Financial resources often dictate career opportunities more than aptitude.
+    \item \textbf{Education and Experience}: The model assumes a "blank slate," ignoring current qualifications.
+    \item \textbf{Cultural Context}: The training data may reflect Western-centric career norms.
+    \item \textbf{Physical Disabilities}: Certain careers may have physical requirements not captured by abstract aptitude scores.
+\end{itemize}
+These exclusions mean the model provides a partial view of reality, potentially suggesting unattainable or culturally inappropriate paths.
+
+\section{The Bias Experiment: A Demonstration}
+To illustrate the fragility of ML models and the ease with which bias can be introduced, we conducted a controlled experiment.
+
+\subsection{Methodology}
+We trained two Random Forest models on the same dataset:
+\begin{enumerate}
+    \item \textbf{Clean Model}: Trained on the original, unaltered dataset.
+    \item \textbf{Biased Model}: Trained on a manipulated dataset where we introduced a specific bias rule: \textit{"If a student's Numerical Aptitude is below 50, their career label is forced to 'Artist', regardless of other traits."}
+\end{enumerate}
+
+\subsection{Results}
+We tested both models with a profile featuring low Numerical Aptitude but high scores in other areas (e.g., Abstract Reasoning).
+\begin{itemize}
+    \item \textbf{Clean Model Prediction}: \texttt{Software Engineer} (based on high logical reasoning).
+    \item \textbf{Biased Model Prediction}: \texttt{Artist}.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/bias_demonstration.png}
+    \caption{Probability of being classified as an "Artist" for a profile with low Numerical Aptitude. The biased model artificially inflates this probability.}
+    \label{fig:bias_demo}
+\end{figure}
+
+This simple manipulation demonstrates how a specific demographic (those with lower math scores) could be systematically steered towards a specific career path, limiting their perceived options. In a real-world scenario, such bias could stem from historical hiring data rather than intentional manipulation, yet the effect would be the same.
+
+\section{Ethical Questions}
+
+\subsection{What if predictions are biased?}
+If the model is biased, it risks reinforcing stereotypes (e.g., gendered career roles) and limiting social mobility. A student discouraged from STEM fields due to a biased algorithm may miss out on high-growth opportunities. The "black box" nature of some models makes this bias difficult to detect without rigorous auditing.
+
+\subsection{Who is to blame?}
+Accountability in AI is complex.
+\begin{itemize}
+    \item \textbf{Data Collectors}: If the training data reflects historical prejudices, the model will learn them.
+    \item \textbf{Developers}: Responsible for model selection, feature engineering, and failing to test for bias.
+    \item \textbf{Users/Institutions}: Responsible for how the tool is deployed. Using it as a definitive decision-maker rather than a supportive tool shifts blame to the implementers.
+\end{itemize}
+Ultimately, the developers bear the primary responsibility for ensuring the system is safe and fair before deployment.
+
+\subsection{How to guarantee correctness?}
+"Correctness" in career advising is subjective. Unlike classifying an image, there is no single "true" career for a person.
+\begin{itemize}
+    \item \textbf{Technical Correctness}: Can be measured via accuracy and F1-scores on test data.
+    \item \textbf{Ethical Correctness}: Requires continuous monitoring, user feedback loops, and "human-in-the-loop" systems where counselors review AI suggestions.
+    \item \textbf{Transparency}: Providing confidence intervals (as our system does) and explanations helps users understand the uncertainty of the prediction.
+\end{itemize}
+
+\section{Conclusion}
+The \textit{CareerPath AI} project demonstrates the potential of AI in education but also highlights its risks. Our bias experiment proves that data integrity is paramount. To mitigate these risks, we must treat these systems as \textit{advisors}, not \textit{deciders}, ensuring human oversight and continuous ethical auditing.
+
+\end{document}
