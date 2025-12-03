@@ -4,7 +4,7 @@
 
 CareerPath AI is an intelligent career prediction system that uses machine learning to help students make informed decisions about their career paths based on their educational background, skills, and interests.
 
-This project was developed as part of a COIL (Collaborative Online International Learning) collaboration between students from Universidad and Virginia Tech.
+This project was developed as part of a COIL (Collaborative Online International Learning) collaboration between students from Universidad San Francisco de Quito and Virginia Tech.
 
 ## ✨ Features
 
@@ -161,7 +161,7 @@ This project is developed for educational purposes.
 
 ## 🙏 Acknowledgments
 
-- Dataset providers (Kaggle, BLS)
+- Dataset providers (Kaggle)
 - OpenAI for API access
 - Virginia Tech and Universidad San Francisco de Quito for the COIL collaboration opportunity
 - Course instructors and mentors
