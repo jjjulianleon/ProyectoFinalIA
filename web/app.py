@@ -346,7 +346,7 @@ def main():
         - **Data Science:** scikit-learn, pandas, numpy
 
         ### 👥 Developed by:
-        COIL Project Team - Universidad & Virginia Tech
+        COIL Project Team - Universidad San Francisco de Quito & Virginia Tech
         """)
 
     # Footer
