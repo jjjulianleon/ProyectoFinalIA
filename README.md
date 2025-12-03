@@ -161,7 +161,7 @@ This project is developed for educational purposes.
 
 ## 🙏 Acknowledgments
 
-- Dataset providers (Kaggle, BLS)
+- Dataset providers (Kaggle)
 - OpenAI for API access
 - Virginia Tech and Universidad San Francisco de Quito for the COIL collaboration opportunity
 - Course instructors and mentors
